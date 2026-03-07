@@ -11,11 +11,11 @@ export type Service = {
 export const services: Service[] = [
   {
     id: "maru-batsu-shindan",
-    name: "○×診断",
-    description: "カードを○×に振り分けるAI診断ゲーム",
+    name: "キャラクター診断",
+    description: "好きなキャラを選んで「はい」「いいえ」で答えると、あなたの性格を診断！",
     thumbnail: "/portal-site/thumbnails/maru-batsu.png",
     tags: ["診断", "AI"],
-    url: "https://maru-batsu.okaka-club.com/",
+    url: "https://mbs.okakaclub.com/",
     isExternal: true,
   },
   {
@@ -24,7 +24,7 @@ export const services: Service[] = [
     description: "みんなで遊べるオンラインワンナイト人狼",
     thumbnail: "/portal-site/thumbnails/one-night-jinroh.png",
     tags: ["ゲーム", "マルチプレイ"],
-    url: "https://one-night.okaka-club.com/",
+    url: "https://yuru-jinrou.com/#/",
     isExternal: true,
   },
 ];

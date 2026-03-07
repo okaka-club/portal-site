@@ -3,14 +3,14 @@
 @font-face {
   font-family: "Mamelon";
   font-weight: 400;
-  src: url("/portal-site/fonts/Mamelon-3-Hi-Regular.woff2") format("woff2");
+  src: url("/fonts/Mamelon-3-Hi-Regular.woff2") format("woff2");
   font-display: swap;
 }
 
 @font-face {
   font-family: "Mamelon";
   font-weight: 700;
-  src: url("/portal-site/fonts/Mamelon-5-Hi-Regular.woff2") format("woff2");
+  src: url("/fonts/Mamelon-5-Hi-Regular.woff2") format("woff2");
   font-display: swap;
 }
 

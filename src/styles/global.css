@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Mamelon";
+  font-weight: 400;
+  src: url("/portal-site/fonts/Mamelon-3-Hi-Regular.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mamelon";
+  font-weight: 700;
+  src: url("/portal-site/fonts/Mamelon-5-Hi-Regular.woff2") format("woff2");
+  font-display: swap;
+}
+
+@theme {
+  --font-mamelon: "Mamelon", sans-serif;
+
+  /* パステルカラー定義 */
+  --color-pastel-pink: #ffd6e7;
+  --color-pastel-yellow: #fff3cd;
+  --color-pastel-mint: #d4f4e2;
+  --color-pastel-lavender: #e8d5f5;
+  --color-pastel-sky: #d0eeff;
+  --color-pastel-peach: #ffe5d0;
+}

@@ -1,0 +1,36 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+}
+
+const { title = 'おかかくらぶ' } = Astro.props;
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="おかかくらぶのミニゲーム・診断サービス一覧" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+
+    <!-- Google AdSense -->
+    <meta name="google-adsense-account" content="ca-pub-1943655908730100" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1943655908730100" crossorigin="anonymous"></script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQY2NZ7SEM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-CQY2NZ7SEM');
+    </script>
+
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen bg-[#fff9f5] font-[Mamelon,sans-serif]">
+    <slot />
+  </body>
+</html>

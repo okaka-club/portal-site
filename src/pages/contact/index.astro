@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<BaseLayout title="お問い合わせ | おかかくらぶ">
+  <Header />
+  <main class="flex min-h-[calc(100vh-200px)] flex-col items-center px-4 py-8">
+    <div class="w-full max-w-[640px]">
+      <a href="/" class="mb-4 inline-flex items-center text-sm text-stone-400 hover:text-stone-600 transition">
+        ← トップページに戻る
+      </a>
+      <h1 class="sr-only">お問い合わせ</h1>
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSdfaglHEugV7di-LOnJLAPL0kvuc74M-Azotf5YeV96zuWxHA/viewform?embedded=true"
+        width="640"
+        height="698"
+        class="w-full"
+        title="お問い合わせフォーム"
+        loading="lazy"
+      >
+        読み込んでいます…
+      </iframe>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

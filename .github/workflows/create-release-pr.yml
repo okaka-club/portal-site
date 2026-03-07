@@ -1,0 +1,131 @@
+name: リリースPR作成
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'PRを作成せず、含まれる変更の確認のみ行う'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  create-release-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 差分チェック
+        id: check
+        run: |
+          git fetch origin main develop
+
+          COMMIT_COUNT=$(git rev-list --count origin/main..origin/develop)
+          echo "commit_count=${COMMIT_COUNT}" >> $GITHUB_OUTPUT
+
+          if [ "$COMMIT_COUNT" -eq 0 ]; then
+            echo "::warning::developとmainに差分がありません"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 既存PRチェック
+        if: steps.check.outputs.has_changes == 'true'
+        id: existing
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          EXISTING_PR=$(gh pr list --base main --head develop --state open --json number,url -q '.[0]')
+
+          if [ -n "$EXISTING_PR" ]; then
+            PR_NUMBER=$(echo "$EXISTING_PR" | jq -r '.number')
+            PR_URL=$(echo "$EXISTING_PR" | jq -r '.url')
+            echo "::warning::既存のリリースPRがあります: #${PR_NUMBER}"
+            echo "pr_exists=true" >> $GITHUB_OUTPUT
+            echo "pr_url=${PR_URL}" >> $GITHUB_OUTPUT
+          else
+            echo "pr_exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: PR一覧を生成
+        if: steps.check.outputs.has_changes == 'true'
+        id: pr_list
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "## 含まれるPR一覧" > pr_list.md
+          echo "" >> pr_list.md
+
+          git log origin/main..origin/develop --oneline --grep="Merge pull request" \
+            | grep -oP '#\d+' \
+            | sort -u \
+            | while read pr_ref; do
+                pr_num=${pr_ref#\#}
+                PR_INFO=$(gh pr view "$pr_num" --json number,title,author,labels -q '"- #\(.number) \(.title) by @\(.author.login)\(if .labels | length > 0 then " `\(.labels | map(.name) | join("`, `"))`" else "" end)"' 2>/dev/null || true)
+                if [ -n "$PR_INFO" ]; then
+                  echo "$PR_INFO" >> pr_list.md
+                fi
+              done
+
+          DIRECT_COMMITS=$(git log origin/main..origin/develop --oneline --no-merges --invert-grep --grep="Merge pull request")
+          if [ -n "$DIRECT_COMMITS" ]; then
+            echo "" >> pr_list.md
+            echo "## 直接コミット" >> pr_list.md
+            echo '```' >> pr_list.md
+            echo "$DIRECT_COMMITS" >> pr_list.md
+            echo '```' >> pr_list.md
+          fi
+
+          cat pr_list.md
+
+          PR_LIST_CONTENT=$(cat pr_list.md)
+          echo "pr_list<<EOF" >> $GITHUB_OUTPUT
+          echo "$PR_LIST_CONTENT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: リリースPRを作成
+        if: |
+          steps.check.outputs.has_changes == 'true' &&
+          steps.existing.outputs.pr_exists == 'false' &&
+          inputs.dry_run == false
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          DATE=$(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M')
+
+          PR_URL=$(gh pr create \
+            --base main \
+            --head develop \
+            --title "🚀 Release $(TZ=Asia/Tokyo date '+%Y-%m-%d')" \
+            --body "## Release ${DATE}
+
+          ${{ steps.pr_list.outputs.pr_list }}
+
+          ---
+          *このPRはワークフローにより自動作成されました*")
+
+          echo "::notice::リリースPRを作成しました: ${PR_URL}"
+
+      - name: サマリー表示
+        if: always()
+        run: |
+          echo "## 実行結果" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${{ steps.check.outputs.has_changes }}" == "false" ]; then
+            echo "⚠️ developとmainに差分がありません" >> $GITHUB_STEP_SUMMARY
+          elif [ "${{ steps.existing.outputs.pr_exists }}" == "true" ]; then
+            echo "⚠️ 既存のリリースPRがあります: ${{ steps.existing.outputs.pr_url }}" >> $GITHUB_STEP_SUMMARY
+          elif [ "${{ inputs.dry_run }}" == "true" ]; then
+            echo "🔍 **Dry Runモード**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "${{ steps.pr_list.outputs.pr_list }}" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "✅ リリースPRを作成しました" >> $GITHUB_STEP_SUMMARY
+          fi

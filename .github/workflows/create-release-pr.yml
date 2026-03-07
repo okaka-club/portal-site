@@ -96,13 +96,14 @@ jobs:
           inputs.dry_run == false
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_LIST: ${{ steps.pr_list.outputs.pr_list }}
         run: |
           DATE=$(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M')
 
           {
             echo "## Release ${DATE}"
             echo ""
-            echo "${{ steps.pr_list.outputs.pr_list }}"
+            echo "$PR_LIST"
             echo ""
             echo "---"
             echo "*このPRはワークフローにより自動作成されました*"
@@ -118,18 +119,24 @@ jobs:
 
       - name: サマリー表示
         if: always()
+        env:
+          HAS_CHANGES: ${{ steps.check.outputs.has_changes }}
+          PR_EXISTS: ${{ steps.existing.outputs.pr_exists }}
+          PR_URL: ${{ steps.existing.outputs.pr_url }}
+          DRY_RUN: ${{ inputs.dry_run }}
+          PR_LIST: ${{ steps.pr_list.outputs.pr_list }}
         run: |
           echo "## 実行結果" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
-          if [ "${{ steps.check.outputs.has_changes }}" == "false" ]; then
+          if [ "$HAS_CHANGES" == "false" ]; then
             echo "⚠️ developとmainに差分がありません" >> $GITHUB_STEP_SUMMARY
-          elif [ "${{ steps.existing.outputs.pr_exists }}" == "true" ]; then
-            echo "⚠️ 既存のリリースPRがあります: ${{ steps.existing.outputs.pr_url }}" >> $GITHUB_STEP_SUMMARY
-          elif [ "${{ inputs.dry_run }}" == "true" ]; then
+          elif [ "$PR_EXISTS" == "true" ]; then
+            echo "⚠️ 既存のリリースPRがあります: ${PR_URL}" >> $GITHUB_STEP_SUMMARY
+          elif [ "$DRY_RUN" == "true" ]; then
             echo "🔍 **Dry Runモード**" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "${{ steps.pr_list.outputs.pr_list }}" >> $GITHUB_STEP_SUMMARY
+            echo "$PR_LIST" >> $GITHUB_STEP_SUMMARY
           else
             echo "✅ リリースPRを作成しました" >> $GITHUB_STEP_SUMMARY
           fi

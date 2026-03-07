@@ -41,7 +41,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          EXISTING_PR=$(gh pr list --base main --head develop --state open --json number,url -q '.[0]')
+          EXISTING_PR=$(gh pr list --base main --head develop --state open --json number,url -q '.[0] // empty')
 
           if [ -n "$EXISTING_PR" ]; then
             PR_NUMBER=$(echo "$EXISTING_PR" | jq -r '.number')
@@ -73,7 +73,7 @@ jobs:
                 fi
               done
 
-          DIRECT_COMMITS=$(git log origin/main..origin/develop --oneline --no-merges --invert-grep --grep="Merge pull request")
+          DIRECT_COMMITS=$(git log origin/main..origin/develop --first-parent --oneline --no-merges --invert-grep --grep="Merge pull request")
           if [ -n "$DIRECT_COMMITS" ]; then
             echo "" >> pr_list.md
             echo "## 直接コミット" >> pr_list.md
@@ -99,16 +99,20 @@ jobs:
         run: |
           DATE=$(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M')
 
+          {
+            echo "## Release ${DATE}"
+            echo ""
+            echo "${{ steps.pr_list.outputs.pr_list }}"
+            echo ""
+            echo "---"
+            echo "*このPRはワークフローにより自動作成されました*"
+          } > pr_body.md
+
           PR_URL=$(gh pr create \
             --base main \
             --head develop \
             --title "🚀 Release $(TZ=Asia/Tokyo date '+%Y-%m-%d')" \
-            --body "## Release ${DATE}
-
-          ${{ steps.pr_list.outputs.pr_list }}
-
-          ---
-          *このPRはワークフローにより自動作成されました*")
+            --body-file pr_body.md)
 
           echo "::notice::リリースPRを作成しました: ${PR_URL}"
 

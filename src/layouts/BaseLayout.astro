@@ -3,17 +3,38 @@ import '../styles/global.css';
 
 interface Props {
   title?: string;
+  description?: string;
 }
 
-const { title = 'おかかくらぶ' } = Astro.props;
+const {
+  title = 'おかかくらぶ',
+  description = 'おかかくらぶのミニゲーム・診断サービス一覧',
+} = Astro.props;
+
+const siteUrl = 'https://okakaclub.com';
+const ogImage = `${siteUrl}/logo.png`;
 ---
 
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="おかかくらぶのミニゲーム・診断サービス一覧" />
+    <meta name="description" content={description} />
     <link rel="icon" type="image/png" href="/logo.png" />
+
+    <!-- OGP -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="おかかくらぶ" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={Astro.url.href} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
 
     <!-- Google AdSense -->
     <meta name="google-adsense-account" content="ca-pub-1943655908730100" />

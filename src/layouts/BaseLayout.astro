@@ -4,11 +4,13 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  noAds?: boolean;
 }
 
 const {
   title = 'おかかくらぶ',
   description = 'おかかくらぶのミニゲーム・診断サービス一覧',
+  noAds = false,
 } = Astro.props;
 
 const siteUrl = 'https://okakaclub.com';
@@ -37,8 +39,12 @@ const ogImage = `${siteUrl}/logo.png`;
     <meta name="twitter:image" content={ogImage} />
 
     <!-- Google AdSense -->
-    <meta name="google-adsense-account" content="ca-pub-1943655908730100" />
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1943655908730100" crossorigin="anonymous"></script>
+    {!noAds && (
+      <>
+        <meta name="google-adsense-account" content="ca-pub-1943655908730100" />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1943655908730100" crossorigin="anonymous"></script>
+      </>
+    )}
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQY2NZ7SEM"></script>

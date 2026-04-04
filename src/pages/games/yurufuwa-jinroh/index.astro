@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+
+const screenshots = [
+  { src: '/screenshots/yurufuwa-jinroh/01-title.png', alt: 'タイトル画面', pos: 'object-center' },
+  { src: '/screenshots/yurufuwa-jinroh/02-room.png', alt: 'ルーム作成・参加者待ち', pos: 'object-center' },
+  { src: '/screenshots/yurufuwa-jinroh/03-day.png', alt: '昼フェーズ（話し合い）', pos: 'object-center' },
+  { src: '/screenshots/yurufuwa-jinroh/04-result.png', alt: 'ゲーム結果', pos: 'object-top' },
+];
+---
+
+<BaseLayout
+  title="ゆるふわじんろう | おかかくらぶ"
+  description="スマホだけで遊べるオンラインのワンナイト人狼。部屋を作って友達に番号を教えるだけで、すぐに始められます。"
+>
+  <Header />
+  <main class="flex min-h-[calc(100vh-200px)] flex-col items-center px-4 py-8">
+    <div class="w-full max-w-4xl">
+      <a href="/" class="mb-6 inline-flex items-center text-sm text-stone-400 hover:text-stone-600 transition">
+        ← トップページに戻る
+      </a>
+
+      <h1 class="text-3xl font-bold text-stone-800 mb-3">ゆるふわじんろう</h1>
+
+      <p class="text-stone-600 leading-relaxed mb-2">
+        スマホだけで遊べるオンラインのワンナイト人狼です。
+      </p>
+      <p class="text-stone-600 leading-relaxed mb-6">
+        部屋を作って番号を友達に教えるだけで始められます。アプリのインストールは不要です。
+      </p>
+
+      <a
+        href="https://yuru-jinrou.com/#/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block bg-pink-400 hover:bg-pink-500 text-white font-bold px-6 py-3 rounded-xl transition mb-10"
+      >
+        遊んでみる →
+      </a>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
+        {screenshots.map((ss) => (
+          <div class="rounded-xl overflow-hidden border border-stone-100 shadow-sm aspect-video">
+            <img src={ss.src} alt={ss.alt} class={`w-full h-full object-cover ${ss.pos}`} loading="lazy" />
+          </div>
+        ))}
+      </div>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-stone-800 mb-3">こんな人に遊んでほしい</h2>
+        <ul class="space-y-2 text-stone-600">
+          <li>・友達と集まったときにサクッと遊びたい</li>
+          <li>・人狼をやったことがないけど試してみたい</li>
+          <li>・アプリをインストールせずにすぐ始めたい</li>
+        </ul>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-stone-800 mb-3">遊び方</h2>
+        <ol class="space-y-2 text-stone-600">
+          <li>1. 部屋を作って、表示された番号を友達に教える</li>
+          <li>2. 全員が入室したらゲームスタート</li>
+          <li>3. 夜に役職を確認して、昼に話し合いで人狼を探す</li>
+        </ol>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

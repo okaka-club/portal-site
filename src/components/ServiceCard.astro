@@ -16,12 +16,12 @@ const tagColors = [
 ];
 ---
 
-<div class="group rounded-2xl bg-white shadow-sm border border-stone-100 overflow-hidden transition hover:shadow-md hover:-translate-y-1">
+<div class="group flex flex-col rounded-2xl bg-white shadow-sm border border-stone-100 overflow-hidden transition hover:shadow-md hover:-translate-y-1">
   <a
     href={service.url}
     target={service.isExternal ? '_blank' : '_self'}
     rel={service.isExternal ? 'noopener noreferrer' : undefined}
-    class="block"
+    class="flex flex-col flex-1"
   >
     <div class="aspect-video w-full bg-[#fff9f5] flex items-center justify-center overflow-hidden">
       <img
@@ -35,7 +35,7 @@ const tagColors = [
       </div>
     </div>
 
-    <div class="p-4 pb-2">
+    <div class="p-4 pb-2 flex-1">
       <div class="flex flex-wrap gap-1 mb-2">
         {service.tags.map((tag, i) => (
           <span class={`text-xs px-2 py-0.5 rounded-full font-medium ${tagColors[i % tagColors.length]}`}>

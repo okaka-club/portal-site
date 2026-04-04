@@ -28,5 +28,6 @@ export const services: Service[] = [
     tags: ["ゲーム", "マルチプレイ"],
     url: "https://yuru-jinrou.com/#/",
     isExternal: true,
+    detailUrl: "/games/yurufuwa-jinroh/",
   },
 ];

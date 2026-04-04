@@ -6,6 +6,7 @@ export type Service = {
   tags: string[];
   url: string;
   isExternal: boolean;
+  detailUrl?: string;
 };
 
 export const services: Service[] = [
@@ -17,6 +18,7 @@ export const services: Service[] = [
     tags: ["診断", "AI"],
     url: "https://mbs.okakaclub.com/",
     isExternal: true,
+    detailUrl: "/games/maru-batsu-shindan/",
   },
   {
     id: "one-night-jinroh",

@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+
+const screenshots = [
+  { src: '/screenshots/maru-batsu-shindan/01-select.png', alt: 'キャラクター選択画面' },
+  { src: '/screenshots/maru-batsu-shindan/02-question.png', alt: '質問画面' },
+  { src: '/screenshots/maru-batsu-shindan/03-generating.png', alt: '診断結果生成中' },
+  { src: '/screenshots/maru-batsu-shindan/04-result.png', alt: '診断結果' },
+];
+---
+
+<BaseLayout
+  title="キャラクター診断 | おかかくらぶ"
+  description="好きなキャラを選んで「はい/いいえ」に答えるだけ。AIがキャラの口調であなたの性格を診断してくれます。"
+>
+  <Header />
+  <main class="flex min-h-[calc(100vh-200px)] flex-col items-center px-4 py-8">
+    <div class="w-full max-w-4xl">
+      <a href="/" class="mb-6 inline-flex items-center text-sm text-stone-400 hover:text-stone-600 transition">
+        ← トップページに戻る
+      </a>
+
+      <h1 class="text-3xl font-bold text-stone-800 mb-3">キャラクター診断</h1>
+
+      <p class="text-stone-600 leading-relaxed mb-2">
+        ちょっとした暇つぶしに遊べる診断ゲームです。
+      </p>
+      <p class="text-stone-600 leading-relaxed mb-6">
+        好きなキャラを選んで「はい/いいえ」に答えるだけ。AIがキャラの口調であなたの性格を診断してくれます。
+      </p>
+
+      <a
+        href="https://mbs.okakaclub.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block bg-pink-400 hover:bg-pink-500 text-white font-bold px-6 py-3 rounded-xl transition mb-10"
+      >
+        遊んでみる →
+      </a>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
+        {screenshots.map((ss) => (
+          <div class="rounded-xl overflow-hidden border border-stone-100 shadow-sm aspect-video">
+            <img src={ss.src} alt={ss.alt} class="w-full h-full object-cover" loading="lazy" />
+          </div>
+        ))}
+      </div>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-stone-800 mb-3">こんな人に遊んでほしい</h2>
+        <ul class="space-y-2 text-stone-600">
+          <li>・キャラクターと会話している感覚を楽しみたい</li>
+          <li>・友達とのアイスブレイクに使いたい</li>
+          <li>・30秒でサクッと遊びたい</li>
+        </ul>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-stone-800 mb-3">遊び方</h2>
+        <ol class="space-y-2 text-stone-600">
+          <li>1. 好きなキャラクターを選ぶ</li>
+          <li>2. 「はい/いいえ」で質問に答える</li>
+          <li>3. AIがキャラの口調で診断結果を教えてくれる</li>
+        </ol>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

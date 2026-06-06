@@ -21,13 +21,13 @@ export const services: Service[] = [
     detailUrl: "/games/maru-batsu-shindan/",
   },
   {
-    id: "one-night-jinroh",
+    id: "yuru-jinro",
     name: "ゆるふわじんろう",
     description: "みんなで遊べるオンラインワンナイト人狼",
-    thumbnail: "/thumbnails/one-night-jinroh.png",
+    thumbnail: "/thumbnails/yuru-jinro.png",
     tags: ["ゲーム", "マルチプレイ"],
-    url: "https://yuru-jinrou.com/#/",
+    url: "https://yuru-jinrou.okakaclub.com/",
     isExternal: true,
-    detailUrl: "/games/yurufuwa-jinroh/",
+    detailUrl: "/games/yuru-jinro/",
   },
 ];

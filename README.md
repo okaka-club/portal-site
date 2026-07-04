@@ -2,7 +2,7 @@
 
 おかかくらぶのミニゲーム・診断サービスへの入り口となるポータルサイト。
 
-- 公開URL: https://okaka-club.github.io/portal-site/
+- 公開URL: https://okakaclub.com/
 
 ## 技術スタック
 
@@ -18,7 +18,7 @@
 ```bash
 npm install
 npm run dev
-# → http://localhost:4321/portal-site/ で確認
+# → http://localhost:4321/ で確認
 ```
 
 ## ビルド
@@ -63,7 +63,7 @@ portal-site/
   id: "new-service",          // 一意なID（URL用）
   name: "新しいサービス",
   description: "サービスの説明文",
-  thumbnail: "/portal-site/thumbnails/new-service.png",
+  thumbnail: "/thumbnails/new-service.png",
   tags: ["タグ1", "タグ2"],
   url: "https://example.okaka-club.com/",
   isExternal: true,

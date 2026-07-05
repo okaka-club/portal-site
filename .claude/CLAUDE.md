@@ -5,13 +5,13 @@
 複数のミニゲーム・診断サービスへの入り口となるポータルサイト。
 Astro v5（静的サイト生成）+ Tailwind CSS v4 + GitHub Pages。
 
-- 公開URL: https://okaka-club.github.io/portal-site/
-- `base` パス: `/portal-site`
+- 公開URL: https://okakaclub.com/
+- `base` パス: `/`（独自ドメイン運用。旧 github.io/portal-site から移行済み）
 
 ## よく使うコマンド
 
 ```bash
-npm run dev    # 開発サーバー起動（http://localhost:4321/portal-site/）
+npm run dev    # 開発サーバー起動（http://localhost:4321/）
 npm run build  # 本番ビルド（dist/ に出力）
 ```
 
@@ -23,9 +23,9 @@ npm run build  # 本番ビルド（dist/ に出力）
 - クラス名はTailwindのユーティリティクラスを直接使用
 
 ### パスの書き方
-- **すべての静的ファイルのパスに `/portal-site/` プレフィックスが必要**
-  - 例: `/portal-site/logo.png`、`/portal-site/fonts/Mamelon-3-Hi-Regular.woff2`
-  - Astroの `Astro.site` / `Astro.base` は使わず、直接ハードコードで問題ない
+- 静的ファイルはルート相対パスで書く
+  - 例: `/logo.png`、`/fonts/Mamelon-3-Hi-Regular.woff2`
+  - 旧GitHub Pages時代の `/portal-site/` プレフィックスは不要（付けるとリンク切れになる）
 
 ### Astroコンポーネント
 - `src/layouts/BaseLayout.astro`: 全ページで使う共通レイアウト（`<html>` 〜 `</html>`）
@@ -53,6 +53,10 @@ body（必要なら）
 Refs: #イシュー番号
 ```
 - AI署名（Co-Authored-By）はつけない
+
+## ハーネス変更履歴
+
+この指示書や `.claude/` 配下を変更するとき、またはClaude Codeの挙動が不自然なときは、まず `.claude/changelog/` の記録を読むこと。変更したら同ディレクトリに日付ファイルで「何を・なぜ・戻し方」を残す。
 
 ## 関連プロジェクト
 

@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+
+const screenshots = [
+  { src: '/screenshots/soritia/01-board.png', alt: 'ゲーム画面', pos: 'object-center' },
+  { src: '/screenshots/soritia/02-sleeve.png', alt: 'カードスリーブ（キャラ）選択', pos: 'object-center' },
+  { src: '/screenshots/soritia/03-hint.png', alt: 'ヒント機能', pos: 'object-center' },
+  { src: '/screenshots/soritia/04-daily.png', alt: 'デイリーチャレンジ', pos: 'object-center' },
+];
+---
+
+<BaseLayout
+  title="ソリティア | おかかくらぶ"
+  description="ブラウザですぐ遊べる定番のクロンダイク・ソリティア。デイリーチャレンジやヒント機能つき。インストール不要でスマホでも遊べます。"
+>
+  <Header />
+  <main class="flex min-h-[calc(100vh-200px)] flex-col items-center px-4 py-8">
+    <div class="w-full max-w-4xl">
+      <a href="/" class="mb-6 inline-flex items-center text-sm text-stone-400 hover:text-stone-600 transition">
+        ← トップページに戻る
+      </a>
+
+      <h1 class="text-3xl font-bold text-stone-800 mb-3">ソリティア</h1>
+
+      <p class="text-stone-600 leading-relaxed mb-2">
+        定番のクロンダイク・ソリティアです。ブラウザで開くだけで、インストール不要ですぐ遊べます。
+      </p>
+      <p class="text-stone-600 leading-relaxed mb-6">
+        毎日同じ配置に挑戦できるデイリーチャレンジや、行き詰まったときのヒント機能つき。スマホは横向きにすると遊べます。
+      </p>
+
+      <a
+        href="https://soritia.okakaclub.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block bg-pink-400 hover:bg-pink-500 text-white font-bold px-6 py-3 rounded-xl transition mb-10"
+      >
+        遊んでみる →
+      </a>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
+        {screenshots.map((ss) => (
+          <div class="rounded-xl overflow-hidden border border-stone-100 shadow-sm aspect-video">
+            <img src={ss.src} alt={ss.alt} class={`w-full h-full object-cover ${ss.pos}`} loading="lazy" />
+          </div>
+        ))}
+      </div>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-stone-800 mb-3">こんな人に遊んでほしい</h2>
+        <ul class="space-y-2 text-stone-600">
+          <li>・すきま時間にひとりでじっくり遊びたい</li>
+          <li>・毎日ちょっとした日課がほしい</li>
+          <li>・昔ながらのソリティアをブラウザで手軽に遊びたい</li>
+        </ul>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-stone-800 mb-3">遊び方</h2>
+        <ol class="space-y-2 text-stone-600">
+          <li>1. 場のカードを赤黒交互・数字の降順で重ねて整理する</li>
+          <li>2. A（エース）が出たら右上の組札へ。スートごとに A → K の順で積み上げる</li>
+          <li>3. 4つの組札がすべて完成したらクリア！</li>
+        </ol>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-stone-800 mb-3">デイリーチャレンジ</h2>
+        <p class="text-stone-600 leading-relaxed">
+          毎日0時に切り替わる「今日のチャレンジ」は、遊ぶ人みんなが同じ配置。クリアしたらタイムと手数をコピーして友達とシェアできます。
+        </p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-stone-800 mb-3">選べるカードスリーブ</h2>
+        <p class="text-stone-600 leading-relaxed">
+          カードの裏面はお気に入りのキャラに着せ替えできます。設定から「クリアできる配置のみ」を選べば、必ずクリアできる配置だけで遊ぶこともできます。
+        </p>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

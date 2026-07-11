@@ -21,6 +21,16 @@ export const services: Service[] = [
     detailUrl: "/games/maru-batsu-shindan/",
   },
   {
+    id: "soritia",
+    name: "ソリティア",
+    description: "定番のクロンダイク・ソリティア。デイリーチャレンジやヒント機能つきで、ブラウザですぐ遊べます。",
+    thumbnail: "/thumbnails/soritia.png",
+    tags: ["ゲーム", "ひとりで"],
+    url: "https://soritia.okakaclub.com/",
+    isExternal: true,
+    detailUrl: "/games/soritia/",
+  },
+  {
     id: "yuru-jinro",
     name: "ゆるふわじんろう",
     description: "みんなで遊べるオンラインワンナイト人狼",

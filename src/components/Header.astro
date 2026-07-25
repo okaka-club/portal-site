@@ -1,12 +1,27 @@
 ---
 ---
 
-<header class="py-10 text-center">
-  <a href="/" class="inline-block">
-    <img
-      src="/logo.png"
-      alt="おかかくらぶ"
-      class="mx-auto h-24 w-auto drop-shadow-sm"
-    />
-  </a>
+<header class="border-b border-stone-100 bg-white/70">
+  <div class="mx-auto flex max-w-5xl flex-col items-center gap-4 px-4 py-6 sm:flex-row sm:justify-between">
+    <a href="/" class="inline-block">
+      <img
+        src="/logo.png"
+        alt="おかかくらぶ"
+        class="h-20 w-auto drop-shadow-sm"
+      />
+    </a>
+    <nav aria-label="メインナビゲーション">
+      <ul class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-stone-600">
+        <li>
+          <a href="/#games" class="transition hover:text-pink-600">ゲーム一覧</a>
+        </li>
+        <li>
+          <a href="/about/" class="transition hover:text-pink-600">おかかくらぶについて</a>
+        </li>
+        <li>
+          <a href="/contact/" class="transition hover:text-pink-600">お問い合わせ</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </header>

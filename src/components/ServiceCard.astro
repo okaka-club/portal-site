@@ -6,6 +6,8 @@ interface Props {
 }
 
 const { service } = Astro.props;
+const primaryUrl = service.detailUrl ?? service.url;
+const primaryIsExternal = !service.detailUrl && service.isExternal;
 
 const tagColors = [
   'bg-[#ffd6e7] text-pink-700',
@@ -18,9 +20,9 @@ const tagColors = [
 
 <div class="group flex flex-col rounded-2xl bg-white shadow-sm border border-stone-100 overflow-hidden transition hover:shadow-md hover:-translate-y-1">
   <a
-    href={service.url}
-    target={service.isExternal ? '_blank' : '_self'}
-    rel={service.isExternal ? 'noopener noreferrer' : undefined}
+    href={primaryUrl}
+    target={primaryIsExternal ? '_blank' : undefined}
+    rel={primaryIsExternal ? 'noopener noreferrer' : undefined}
     class="flex flex-col flex-1"
   >
     <div class="aspect-video w-full bg-[#fff9f5] flex items-center justify-center overflow-hidden">
@@ -53,12 +55,20 @@ const tagColors = [
   </a>
 
   {service.detailUrl && (
-    <div class="px-4 pb-3">
+    <div class="flex items-center justify-between gap-3 px-4 pb-4 pt-2">
       <a
         href={service.detailUrl}
-        class="text-xs text-stone-400 hover:text-pink-500 transition"
+        class="text-sm text-stone-500 transition hover:text-pink-600"
       >
-        詳細を見る →
+        詳しく見る
+      </a>
+      <a
+        href={service.url}
+        target={service.isExternal ? '_blank' : undefined}
+        rel={service.isExternal ? 'noopener noreferrer' : undefined}
+        class="rounded-lg bg-pink-400 px-3 py-2 text-sm font-bold text-white transition hover:bg-pink-500"
+      >
+        今すぐ遊ぶ <span aria-hidden="true">↗</span>
       </a>
     </div>
   )}

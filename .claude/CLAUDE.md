@@ -3,7 +3,7 @@
 ## プロジェクト概要
 
 複数のミニゲーム・診断サービスへの入り口となるポータルサイト。
-Astro v5（静的サイト生成）+ Tailwind CSS v4 + GitHub Pages。
+Astro v7（静的サイト生成）+ Tailwind CSS v4 + GitHub Pages。
 
 - 公開URL: https://okakaclub.com/
 - `base` パス: `/`（独自ドメイン運用。旧 github.io/portal-site から移行済み）
@@ -37,12 +37,30 @@ npm run build  # 本番ビルド（dist/ に出力）
 `src/data/services.ts` の `services` 配列にオブジェクトを1つ追加するだけ。
 サムネイル画像は `public/thumbnails/` に配置。
 
+## 作業開始とIssue駆動
+
+調査・回答・レビューだけを求められた場合を除き、実装前に以下を行う。
+
+1. `gh issue list` と `gh pr list` で既存のIssue・PRを確認する。
+2. `git branch --show-current` と `git status` で現在の状態を確認する。
+3. 依頼を、独立して完了・検証できる単位に分ける。
+4. 対応するIssueがなければ、ファイルを変更する前にIssueを作成する。
+5. `issues/チケット番号` ブランチへ移動してから実装する。
+
+- 1つのIssueには原則として1つの目的だけを含める。
+- 別々にリリース、検証、差し戻しできる変更はIssueを分ける。
+- アプリケーション実装、ドキュメント整備、ハーネス設定は混在させない。
+- 複数Issueの変更を同じブランチやコミットへ混在させない。
+- 既存の未コミット変更は無断で破棄しない。
+- 調査から実装へ移る場合は、実装前にIssueを作成する。
+
 ## ブランチ運用・コミット規約
 
 ### ブランチ
 - `main`: 本番（pushで自動デプロイ）
 - `develop`: 開発ベース
 - `issues/チケット番号`: 作業ブランチ
+- `main` や `develop` へ直接実装しない
 
 ### コミットメッセージ（Conventional Commits）
 ```

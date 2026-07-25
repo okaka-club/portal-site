@@ -8,7 +8,7 @@
 
 | 項目 | 選択 |
 |---|---|
-| フレームワーク | [Astro](https://astro.build/) v5（静的サイト生成） |
+| フレームワーク | [Astro](https://astro.build/) v7（静的サイト生成） |
 | スタイリング | [Tailwind CSS](https://tailwindcss.com/) v4 |
 | フォント | Mamelon（woff2） |
 | ホスティング | GitHub Pages |

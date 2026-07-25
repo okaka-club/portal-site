@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<BaseLayout
+  title="おかかくらぶについて"
+  description="ブラウザで遊べるミニゲームや診断サービスを企画・開発する「おかかくらぶ」の運営情報と制作方針です。"
+  noAds={true}
+>
+  <Header />
+  <main class="mx-auto min-h-[calc(100vh-200px)] max-w-4xl px-4 py-10 sm:px-6">
+    <a href="/" class="inline-flex text-sm text-stone-400 transition hover:text-stone-600">
+      ← トップページに戻る
+    </a>
+
+    <article class="mt-6 rounded-2xl border border-stone-100 bg-white p-6 shadow-sm sm:p-10">
+      <h1 class="text-3xl font-bold text-stone-900">おかかくらぶについて</h1>
+      <p class="mt-5 leading-relaxed text-stone-600">
+        おかかくらぶは、ブラウザで遊べるミニゲームや診断サービスを企画・開発・運営する制作チームです。
+        ひとりのすきま時間や、友達と集まった時間に気軽に楽しめるコンテンツを公開しています。
+      </p>
+
+      <section class="mt-10">
+        <h2 class="text-xl font-bold text-stone-800">制作で大切にしていること</h2>
+        <div class="mt-4 grid gap-4 sm:grid-cols-3">
+          <div class="rounded-xl bg-[#fff9f5] p-5">
+            <h3 class="font-bold text-stone-800">すぐに始められる</h3>
+            <p class="mt-2 text-sm leading-relaxed text-stone-600">
+              アプリのインストールを必要とせず、ブラウザを開いて遊べる体験を目指します。
+            </p>
+          </div>
+          <div class="rounded-xl bg-[#fff9f5] p-5">
+            <h3 class="font-bold text-stone-800">遊び方が分かりやすい</h3>
+            <p class="mt-2 text-sm leading-relaxed text-stone-600">
+              初めて遊ぶ人でも迷わないように、操作とルールをできるだけシンプルにします。
+            </p>
+          </div>
+          <div class="rounded-xl bg-[#fff9f5] p-5">
+            <h3 class="font-bold text-stone-800">少しずつ改善する</h3>
+            <p class="mt-2 text-sm leading-relaxed text-stone-600">
+              実際に遊んだ感想や利用状況を参考に、機能や分かりやすさを継続して見直します。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-10">
+        <h2 class="text-xl font-bold text-stone-800">公開しているコンテンツ</h2>
+        <p class="mt-3 leading-relaxed text-stone-600">
+          性格診断、ひとり用カードゲーム、友達と遊ぶオンラインゲームなどを公開しています。
+          各サービスの特徴や遊び方は、トップページのコンテンツ一覧から確認できます。
+        </p>
+        <a
+          href="/#games"
+          class="mt-4 inline-flex text-sm font-medium text-pink-600 transition hover:text-pink-700"
+        >
+          コンテンツ一覧を見る →
+        </a>
+      </section>
+
+      <section class="mt-10">
+        <h2 class="text-xl font-bold text-stone-800">権利表記</h2>
+        <div class="mt-3 space-y-3 text-sm leading-relaxed text-stone-600">
+          <p>
+            当サイトに掲載している文章・画像・ゲーム等の権利は、
+            特記のない限り、おかかくらぶまたは各コンテンツの制作者に帰属します。
+          </p>
+          <p>
+            一部のサービスには「東方Project」を題材とした二次創作コンテンツが含まれます。
+            「東方Project」および登場キャラクターの著作権は上海アリス幻樂団に帰属します。
+            当該コンテンツは非公式のファン作品であり、上海アリス幻樂団および原作者による公式作品ではありません。
+          </p>
+          <p>
+            東方Projectの二次創作については、
+            <a
+              href="https://touhou-project.news/guidelines/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="underline transition hover:text-stone-800"
+            >
+              東方Project二次創作ガイドライン
+            </a>
+            をご確認ください。
+          </p>
+        </div>
+      </section>
+
+      <section class="mt-10">
+        <h2 class="text-xl font-bold text-stone-800">お問い合わせ</h2>
+        <p class="mt-3 leading-relaxed text-stone-600">
+          不具合の報告、ご意見、権利に関するご連絡は、お問い合わせフォームから受け付けています。
+        </p>
+        <a
+          href="/contact/"
+          class="mt-4 inline-flex rounded-xl bg-pink-400 px-5 py-3 text-sm font-bold text-white transition hover:bg-pink-500"
+        >
+          お問い合わせフォームへ
+        </a>
+      </section>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>

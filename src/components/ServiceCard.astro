@@ -54,22 +54,22 @@ const tagColors = [
     </div>
   </a>
 
-  {service.detailUrl && (
-    <div class="flex items-center justify-between gap-3 px-4 pb-4 pt-2">
+  <div class="flex items-center justify-between gap-3 px-4 pb-4 pt-2">
+    {service.detailUrl && (
       <a
         href={service.detailUrl}
         class="text-sm text-stone-500 transition hover:text-pink-600"
       >
         詳しく見る
       </a>
-      <a
-        href={service.url}
-        target={service.isExternal ? '_blank' : undefined}
-        rel={service.isExternal ? 'noopener noreferrer' : undefined}
-        class="rounded-lg bg-pink-400 px-3 py-2 text-sm font-bold text-white transition hover:bg-pink-500"
-      >
-        今すぐ遊ぶ <span aria-hidden="true">↗</span>
-      </a>
-    </div>
-  )}
+    )}
+    <a
+      href={service.url}
+      target={service.isExternal ? '_blank' : undefined}
+      rel={service.isExternal ? 'noopener noreferrer' : undefined}
+      class="ml-auto rounded-lg bg-pink-400 px-3 py-2 text-sm font-bold text-white transition hover:bg-pink-500"
+    >
+      今すぐ遊ぶ <span aria-hidden="true">↗</span>
+    </a>
+  </div>
 </div>

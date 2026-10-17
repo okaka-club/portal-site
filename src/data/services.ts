@@ -40,4 +40,13 @@ export const services: Service[] = [
     isExternal: true,
     detailUrl: "/games/yuru-jinro/",
   },
+  {
+    id: "one-phrase-jinro",
+    name: "ワンフレーズ人狼",
+    description: "お題を見てみんなで「せーの！」。違うお題の人を探す、2〜10人で遊べるオンライン人狼。",
+    thumbnail: "/thumbnails/one-phrase-jinro.png",
+    tags: ["ゲーム", "マルチプレイ"],
+    url: "https://mitarashi-neko.com/games/one-phrase-jinro/",
+    isExternal: true,
+  },
 ];

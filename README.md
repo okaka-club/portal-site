@@ -28,6 +28,19 @@ npm run build
 # → dist/ に出力される
 ```
 
+## 内部リンク検証
+
+```bash
+npm run test:links
+npm run build && npm run check:links
+```
+
+ビルド済み `dist/` の HTML の `href` / `src`、遷移先の `id`、CSS の
+`url()`（画像・フォント）、`sitemap*.xml` の `<loc>` を確認します。
+参照元と壊れた URL を表示して非 0 終了するため、PR の CI でも検出できます。
+外部 URL への通信は行いません。生成 HTML 向けの小さな検査であり、
+JavaScript が動的に作る URL、`srcset`、CSS `@import` は対象外です。
+
 ## ディレクトリ構成
 
 ```

@@ -1,5 +1,5 @@
 const siteUrl = 'https://okakaclub.com';
-const pageModules = import.meta.glob('./**/*.astro');
+const pageModules = import.meta.glob(['./**/*.astro', '!./404.astro']);
 
 const pagePaths = Object.keys(pageModules)
   .filter((path) => !path.includes('['))

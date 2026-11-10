@@ -5,12 +5,14 @@ interface Props {
   title?: string;
   description?: string;
   noAds?: boolean;
+  noindex?: boolean;
 }
 
 const {
   title = 'おかかくらぶ',
   description = 'おかかくらぶのミニゲーム・診断サービス一覧',
   noAds = false,
+  noindex = false,
 } = Astro.props;
 
 const siteUrl = 'https://okakaclub.com';
@@ -23,9 +25,10 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="canonical" href={canonicalUrl} />
+    {!noindex && <link rel="canonical" href={canonicalUrl} />}
 
     <!-- OGP -->
     <meta property="og:type" content="website" />

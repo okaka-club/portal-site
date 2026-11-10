@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="ページが見つかりません | おかかくらぶ"
+  description="お探しのページは見つかりませんでした。"
+  noAds
+  noindex
+>
+  <Header />
+
+  <main class="max-w-5xl mx-auto px-4 pb-16">
+    <section class="py-16 text-center">
+      <p class="text-sm font-medium text-stone-400 mb-3">404</p>
+      <h1 class="text-2xl font-bold text-stone-800 mb-3">ページが見つかりません</h1>
+      <p class="text-stone-500 leading-relaxed max-w-xl mx-auto">
+        お探しのページは、移動または削除された可能性があります。<br />
+        URLをご確認いただくか、下のリンクからお進みください。
+      </p>
+      <ul class="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm font-medium">
+        <li>
+          <a href="/" class="text-pink-600 transition hover:text-pink-700">トップページへ戻る</a>
+        </li>
+        <li>
+          <a href="/#games" class="text-pink-600 transition hover:text-pink-700">ゲーム一覧を見る</a>
+        </li>
+        <li>
+          <a href="/contact/" class="text-pink-600 transition hover:text-pink-700">お問い合わせ</a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

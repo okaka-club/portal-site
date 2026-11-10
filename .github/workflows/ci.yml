@@ -20,3 +20,9 @@ jobs:
 
       - name: ビルド
         run: npm run build
+
+      - name: 内部リンク検証の回帰テスト
+        run: npm run test:links
+
+      - name: ビルド成果物の内部リンク検証
+        run: npm run check:links
